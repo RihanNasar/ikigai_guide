@@ -28,7 +28,7 @@ export default function Home() {
     });
     
     const data = await response.json();
-    
+    // destructure
     const { output } = data;
     
     setOutput(output)
