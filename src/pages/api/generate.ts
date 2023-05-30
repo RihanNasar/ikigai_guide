@@ -28,13 +28,15 @@ export default async function handler(
           and format the response in the following json object ${JSON.stringify(RESPONSE_ATTRIBUTE)}`
         }]
     })
-    const result = completion.data.choices[0].message?.content
-    if (completion) {
-      console.log(result)
-      return res.status(200).json( {output : result} )
+    
+    if (completion.data.choices[0]?.message?.content) {
+      const resultObj = JSON.parse(completion.data.choices[0].message.content);
+      console.log(resultObj);
+      return res.status(200).json(resultObj);
     } else {
-      return res.status(200).json( 'something went wrong' )
+      return res.status(200).json('something went wrong');
     }
+    
   } catch (err) {
     console.log("ad")
     return res.status(200).json( {message: 'internal server error'} )

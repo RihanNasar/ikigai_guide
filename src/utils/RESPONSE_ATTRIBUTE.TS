@@ -1,5 +1,12 @@
-export const RESPONSE_ATTRIBUTE = [
-    ['career no:1','career no:2','career no:3','career no:4','career no:5',],
+export const RESPONSE_ATTRIBUTE = {
+  careers: [
+    'career no:1',
+    'career no:2',
+    'career no:3',
+    'career no:4',
+    'career no:5',
+  ],
+  data: [
     {
       career: 'career',
       summary: 'summary and reason why it would be a good fit for them based on the concept of ikigai',
@@ -25,8 +32,7 @@ export const RESPONSE_ATTRIBUTE = [
           link: 'link/URL for the site of paid resource no:5'
         },
       ],
-      free_resources: 
-      [
+      free_resources: [
         {
           free_resource: 'free resource no:1',
           link: 'link/URL for the site of free resource no:1'
@@ -74,8 +80,7 @@ export const RESPONSE_ATTRIBUTE = [
           link: 'link/URL for the site of paid resource no:5'
         },
       ],
-      free_resources: 
-      [
+      free_resources: [
         {
           free_resource: 'free resource no:1',
           link: 'link/URL for the site of free resource no:1'
@@ -123,8 +128,7 @@ export const RESPONSE_ATTRIBUTE = [
           link: 'link/URL for the site of paid resource no:5'
         },
       ],
-      free_resources: 
-      [
+      free_resources: [
         {
           free_resource: 'free resource no:1',
           link: 'link/URL for the site of free resource no:1'
@@ -172,8 +176,7 @@ export const RESPONSE_ATTRIBUTE = [
           link: 'link/URL for the site of paid resource no:5'
         },
       ],
-      free_resources: 
-      [
+      free_resources: [
         {
           free_resource: 'free resource no:1',
           link: 'link/URL for the site of free resource no:1'
@@ -221,8 +224,7 @@ export const RESPONSE_ATTRIBUTE = [
           link: 'link/URL for the site of paid resource no:5'
         },
       ],
-      free_resources: 
-      [
+      free_resources: [
         {
           free_resource: 'free resource no:1',
           link: 'link/URL for the site of free resource no:1'
@@ -244,5 +246,6 @@ export const RESPONSE_ATTRIBUTE = [
           link: 'link/URL for the site of free resource no:5'
         }
       ]
-    },
-]
+    }
+  ]
+};

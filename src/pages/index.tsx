@@ -2,7 +2,7 @@ import Image from 'next/image'
 import { Poppins } from 'next/font/google'
 import Nav from '@/components/Nav'
 import { useState } from 'react'
-
+import { RESPONSE_ATTRIBUTE } from '@/utils/RESPONSE_ATTRIBUTE'
 const poppins = Poppins({
   weight: ['400', '700'],
   style: ['normal'],
@@ -11,10 +11,32 @@ const poppins = Poppins({
 });
 
 export default function Home() {
+
+  type Resource = {
+    paid_resource: string;
+    link: string;
+  };
+  type Resource2 = {
+    free_resource: string;
+    link: string;
+  };
+  
+  type CareerObject = {
+    career: string;
+    summary: string;
+    paid_resources: Resource[];
+    free_resources: Resource2[];
+  };
+  
+  type ResponseAttribute = [
+    string[],
+    CareerObject,
+    ...CareerObject[]
+  ];
   const [input,setInput] = useState<string>('')
   const [stage,setStage] = useState<string>('')
   const [money,setMoney] = useState<string>('')
-  const [ResponseOutput,setOutput] = useState([])
+  const [ResponseOutput,setOutput] = useState<any>([])
 
   const onSubmitForm = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -29,10 +51,11 @@ export default function Home() {
     
     const data = await response.json();
     // destructure
-    const { output } = data;
+  
     
-    setOutput(output)
-    console.log(output)
+    setOutput(data)
+    console.log(ResponseOutput.careers)
+    
   }
   return (
     <>
