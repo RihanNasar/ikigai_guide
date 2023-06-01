@@ -3,6 +3,7 @@ import { Poppins } from 'next/font/google'
 import Nav from '@/components/Nav'
 import { useState } from 'react'
 import { RESPONSE_ATTRIBUTE } from '@/utils/RESPONSE_ATTRIBUTE'
+import ResponseList from '@/components/ResponseList'
 const poppins = Poppins({
   weight: ['400', '700'],
   style: ['normal'],
@@ -36,7 +37,8 @@ export default function Home() {
   const [input,setInput] = useState<string>('')
   const [stage,setStage] = useState<string>('')
   const [money,setMoney] = useState<string>('')
-  const [ResponseOutput,setOutput] = useState<any>([])
+  const [careerList,setCareerList] = useState<any>()
+  const [careers,setCareers] = useState<string[]>([])
 
   const onSubmitForm = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -49,18 +51,23 @@ export default function Home() {
       body: JSON.stringify({ input,stage,money}),
     });
     
-    const data = await response.json();
+    const result = await response.json();
     // destructure
   
     
-    setOutput(data)
-    console.log(ResponseOutput.careers)
+    if(result){
+      setCareerList(result.data)
+      setCareers(result.careers)
+      console.log(careerList,careers)
+    }
+    
+    
     
   }
   return (
     <>
       <Nav />
-      <div className={`w-full flex md:my-12 justify-center m-auto items-center ${poppins.className}`}>
+      <div className={`w-full flex flex-col md:my-12 justify-center m-auto items-center ${poppins.className}`}>
       <form onSubmit={onSubmitForm} className="flex flex-col justify-center p-6 w-full   md:w-6/12 flex-wrap">
         <div className="flex flex-col m-4 ">
           <label  className="block relative mb-2 ml-1  text-xs md:text-sm left-0  font-light text-black self-start">What stage of life are you at right now?</label>
@@ -87,6 +94,7 @@ export default function Home() {
        
 
       </form>
+        <ResponseList careers={careers} careerList={careerList} />
     </div>
     </>
   )
