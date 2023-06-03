@@ -32,7 +32,7 @@ const ResponseList = ({careerList,careers}: Props) => {
           <ul className="mb-8 space-y-4 text-left   ">
             <>
             {careers.map((career,index) => (
-              <li key={index} className='flex items-center text-sm font-bold space-x-3'>🎯 {career}</li>
+              <li key={uuidv4()} className='flex items-center text-sm font-bold space-x-3'>🎯 {career}</li>
             ))}
           </>
           </ul>
@@ -42,7 +42,7 @@ const ResponseList = ({careerList,careers}: Props) => {
         <div className="flex flex-col">
             <>
             {careerList ? careerList.map((career,index) => (
-              <div key={index} className="flex flex-col m-5 spacing-y-3 p-5 gap-4 bg-white text-blue-600 rounded-lg ">
+              <div key={uuidv4()} className="flex flex-col m-5 spacing-y-3 p-5 gap-4 bg-white text-blue-600 rounded-lg ">
                 <h5 className='text-xl font-bold text-left'>
                   {career.career}
                 </h5>
