@@ -1,8 +1,8 @@
-import Image from 'next/image'
+
 import { Poppins } from 'next/font/google'
 import Nav from '@/components/Nav'
 import { useState } from 'react'
-import { RESPONSE_ATTRIBUTE } from '@/utils/RESPONSE_ATTRIBUTE'
+import ClimbingBoxLoader from 'react-spinners/ClimbingBoxLoader'
 import ResponseList from '@/components/ResponseList'
 const poppins = Poppins({
   weight: ['400', '700'],
@@ -12,37 +12,34 @@ const poppins = Poppins({
 });
 
 export default function Home() {
-
-  type Resource = {
-    paid_resource: string;
-    link: string;
-  };
-  type Resource2 = {
-    free_resource: string;
-    link: string;
-  };
-  
-  type CareerObject = {
-    career: string;
-    summary: string;
-    paid_resources: Resource[];
-    free_resources: Resource2[];
-  };
-  
-  type ResponseAttribute = [
-    string[],
-    CareerObject,
-    ...CareerObject[]
-  ];
+  type PaidResource = {
+    paid_resource: string,
+    linkFor: string
+  }
+  type FreeResource = {
+    free_resource: string,
+    linkFor: string
+  }
+  type CareerData = {
+      career: string;
+      summary: string;
+      paid_resources: PaidResource[];
+      free_resources: FreeResource[];
+    };
   const [input,setInput] = useState<string>('')
+  let [loading,setLoading] = useState<boolean>(false)
   const [stage,setStage] = useState<string>('')
   const [money,setMoney] = useState<string>('')
-  const [careerList,setCareerList] = useState<any>()
+  const [careerList,setCareerList] = useState<CareerData[]>()
   const [careers,setCareers] = useState<string[]>([])
+  const [err,setErr] = useState(false)
 
   const onSubmitForm = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+    setLoading(true)
     console.log("fdfds")
+    try {
+      
     const response = await fetch('/api/generate', {
       method: 'POST',
       headers: {
@@ -58,10 +55,16 @@ export default function Home() {
     if(result){
       setCareerList(result.data)
       setCareers(result.careers)
-      console.log(careerList,careers)
+      setLoading(false)
+      console.log(careers,result.data[0])
+    }else {
+      setErr(true)
     }
     
     
+    } catch (error) {
+      console.log(error)
+    }
     
   }
   return (
@@ -94,7 +97,15 @@ export default function Home() {
        
 
       </form>
-        <ResponseList careers={careers} careerList={careerList} />
+        {loading ? (
+          <>
+            <ClimbingBoxLoader color="#2856d3" />
+            <p className='text-sm text-blue-500 font-bold'>
+              climbing the ladders to get your future ...
+            </p>
+          </>
+        
+        ): <ResponseList careers={careers} careerList={careerList} /> }
     </div>
     </>
   )
