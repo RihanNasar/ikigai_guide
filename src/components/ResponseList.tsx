@@ -53,7 +53,7 @@ const ResponseList = ({careerList,careers}: Props) => {
                   <div className="flex flex-wrap my-4 gap-3 ">
                   {career.paid_resources.map(({paid_resource,linkFor}) => (
                   <p key={uuidv4()} className=' items-center font-light text-sm mr-4'>
-                    <Link  href={linkFor}>🔗 {paid_resource}</Link>
+                    <Link key={uuidv4()} href={linkFor}>🔗 {paid_resource}</Link>
                   </p>
                 ))}
                  </div>
@@ -64,7 +64,7 @@ const ResponseList = ({careerList,careers}: Props) => {
                   <div className="flex flex-wrap my-4 gap-3 ">
                   {career.free_resources.map(({free_resource,linkFor}) => (
                   <p key={uuidv4()} className=' items-center font-light text-sm mr-4'>
-                    <Link  href={linkFor}>🔗 {free_resource}</Link>
+                    <Link key={uuidv4()}  href={linkFor}>🔗 {free_resource}</Link>
                   </p>
                 ))}
                  </div>
