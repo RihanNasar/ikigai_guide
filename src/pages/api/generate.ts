@@ -19,7 +19,7 @@ export default async function handler(
         model: 'gpt-3.5-turbo',
         messages: [{
           role: "user",
-          content: `write atleast 5 good careers to follow or pursue using the concept of ikigai for a person ${stage} and is good at ${skills} for whom money is ${money},write it in the following description or detail
+          content: `write  atleast 5 good careers to follow or pursue using the concept of ikigai for a person ${stage} and is good at ${skills} for whom money is ${money},write it in the following description or detail
           -careers which would be a good fit for them, in single line
           -write name of each career and a a brief summary of it  and explain very lengthy detail or more than 200 words on why that specific career would be a good fit for them based on the concept of ikigai,
           -best 5 paid resources for pursuing each careers and the links for them

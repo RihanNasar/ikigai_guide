@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import React from 'react'
-
+import { v4 as uuidv4 } from 'uuid';
 type PaidResource = {
   paid_resource: string,
   linkFor: string
@@ -52,8 +52,8 @@ const ResponseList = ({careerList,careers}: Props) => {
                   <p className="text-md font-light space-x-2 my-4">Here are some paid resources prepared for you :</p>
                   <div className="flex flex-wrap my-4 gap-3 ">
                   {career.paid_resources.map(({paid_resource,linkFor}) => (
-                  <p  className=' items-center font-light text-sm mr-4'>
-                    <Link href={linkFor}>🔗 {paid_resource}</Link>
+                  <p key={uuidv4()} className=' items-center font-light text-sm mr-4'>
+                    <Link  href={linkFor}>🔗 {paid_resource}</Link>
                   </p>
                 ))}
                  </div>
@@ -63,8 +63,8 @@ const ResponseList = ({careerList,careers}: Props) => {
                   <p className="text-md font-light space-x-2 my-4">Here are some free resources prepared for you :</p>
                   <div className="flex flex-wrap my-4 gap-3 ">
                   {career.free_resources.map(({free_resource,linkFor}) => (
-                  <p className=' items-center font-light text-sm mr-4'>
-                    <Link href={linkFor}>🔗 {free_resource}</Link>
+                  <p key={uuidv4()} className=' items-center font-light text-sm mr-4'>
+                    <Link  href={linkFor}>🔗 {free_resource}</Link>
                   </p>
                 ))}
                  </div>

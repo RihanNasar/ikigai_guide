@@ -56,7 +56,7 @@ export default function Home() {
       setCareerList(result.data)
       setCareers(result.careers)
       setLoading(false)
-      console.log(careers,result.data[0])
+      console.log(result.data[0])
     }else {
       setErr(true)
     }

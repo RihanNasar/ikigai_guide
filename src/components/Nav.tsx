@@ -12,8 +12,8 @@ const Nav = () => {
                 </Link> 
                 <div className="w-auto" id="navbar-default">
                     <div className="font-medium flex p-5 justify-center md:justify-normal  md:p-0 mt-1    flex-row space-x-8 md:mt-0 md:border-0  ">
-                        <Link href="/pro" className=" py-1 pl-3 pr-4 text-white rounded-md bg-blue-500 border-0 hover:text-blue-700 transition-all hover:bg-purple-200 p-0 ">Pro</Link>
-                        <Link href="/resources" className=" py-1 md:pl-3 pr-4 text-gray-900 rounded transition-all   border-0 hover:text-blue-700 hover:font-bold ">Resources</Link>
+                        <Link href="/pro" className=" py-1 pl-3 pr-4 text-white font-bold rounded-md bg-blue-500 border-0 hover:text-blue-700 transition-all hover:bg-purple-200 p-0 ">Pro</Link>
+                        <Link href="/resources" className=" py-1 md:pl-3 pr-4 text-gray-900 rounded transition-all   border-0 hover:text-blue-700 ">Resources</Link>
                         
                     </div>
                 </div>
