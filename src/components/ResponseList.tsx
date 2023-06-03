@@ -32,7 +32,7 @@ const ResponseList = ({careerList,careers}: Props) => {
           <ul className="mb-8 space-y-4 text-left   ">
             <>
             {careers.map((career,index) => (
-              <li key={index} className='flex items-center text-sm font-bold space-x-3'>🎯 {career}</li>
+              <li key={uuidv4()} className='flex items-center text-sm font-bold space-x-3'>🎯 {career}</li>
             ))}
           </>
           </ul>
@@ -42,7 +42,7 @@ const ResponseList = ({careerList,careers}: Props) => {
         <div className="flex flex-col">
             <>
             {careerList ? careerList.map((career,index) => (
-              <div key={index} className="flex flex-col m-5 spacing-y-3 p-5 gap-4 bg-white text-blue-600 rounded-lg ">
+              <div key={uuidv4()} className="flex flex-col m-5 spacing-y-3 p-5 gap-4 bg-white text-blue-600 rounded-lg ">
                 <h5 className='text-xl font-bold text-left'>
                   {career.career}
                 </h5>
@@ -53,7 +53,7 @@ const ResponseList = ({careerList,careers}: Props) => {
                   <div className="flex flex-wrap my-4 gap-3 ">
                   {career.paid_resources.map(({paid_resource,linkFor}) => (
                   <p key={uuidv4()} className=' items-center font-light text-sm mr-4'>
-                    <Link key={uuidv4()} href={linkFor}>🔗 {paid_resource}</Link>
+                    <Link key={uuidv4()} href={`${linkFor}`}>🔗 {paid_resource}</Link>
                   </p>
                 ))}
                  </div>
@@ -64,7 +64,7 @@ const ResponseList = ({careerList,careers}: Props) => {
                   <div className="flex flex-wrap my-4 gap-3 ">
                   {career.free_resources.map(({free_resource,linkFor}) => (
                   <p key={uuidv4()} className=' items-center font-light text-sm mr-4'>
-                    <Link key={uuidv4()}  href={linkFor}>🔗 {free_resource}</Link>
+                    <Link key={uuidv4()}  href={`${linkFor}`}>🔗 {free_resource}</Link>
                   </p>
                 ))}
                  </div>

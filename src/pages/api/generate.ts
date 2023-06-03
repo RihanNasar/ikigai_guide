@@ -2,13 +2,10 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import openai from '@/utils/config'
 import {RESPONSE_ATTRIBUTE} from '@/utils/RESPONSE_ATTRIBUTE'
-type Data = {
-  name: any
-}
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<any>
+  res: NextApiResponse
 ) {
   try {
     // create an object with the value string and inter
@@ -41,4 +38,3 @@ export default async function handler(
     console.log("ad")
     return res.status(200).json( {message: 'internal server error'} )
   }}
-
