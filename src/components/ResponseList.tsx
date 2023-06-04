@@ -19,19 +19,20 @@ type CareerData = {
  
 type Props = {
   careers: string[],
-  careerList?: CareerData[]
+  careerList?: CareerData[],
+  exist: boolean
 }
 
-const ResponseList = ({careerList,careers}: Props) => {
+const ResponseList = ({careerList,careers,exist}: Props) => {
   return (
     <>
-    {careers.length !== 0 ? 
-      <div className='w-full md:w-9/12 text-white p-12 flex flex-col bg-blue-500 rounded-lg'>
+    {careers?.length > 0 ? (
+      <div className='w-11/12 md:w-9/12 text-white md:p-12 flex flex-col bg-gradient-to-r from-cyan-500 to-blue-500 rounded-lg '>
         <div className="m-5 bg-white text-blue-500 rounded-lg p-5">
           <p className="text-xs font-semibold my-3 ">These are the List of careers you can pursue:</p>
           <ul className="mb-8 space-y-4 text-left   ">
             <>
-            {careers.map((career,index) => (
+            {careers?.map((career,index) => (
               <li key={uuidv4()} className='flex items-center text-sm font-bold space-x-3'>🎯 {career}</li>
             ))}
           </>
@@ -42,7 +43,7 @@ const ResponseList = ({careerList,careers}: Props) => {
         <div className="flex flex-col">
             <>
             {careerList ? careerList.map((career,index) => (
-              <div key={uuidv4()} className="flex flex-col m-5 spacing-y-3 p-5 gap-4 bg-white text-blue-600 rounded-lg ">
+              <div key={uuidv4()} className="flex flex-col m-5  spacing-y-3 p-5 gap-4 bg-white text-blue-600 rounded-lg ">
                 <h5 className='text-xl font-bold text-left'>
                   {career.career}
                 </h5>
@@ -52,9 +53,9 @@ const ResponseList = ({careerList,careers}: Props) => {
                   <p className="text-md font-light space-x-2 my-4">Here are some paid resources prepared for you :</p>
                   <div className="flex flex-wrap my-4 gap-3 ">
                   {career.paid_resources.map(({paid_resource,linkFor}) => (
-                  <p key={uuidv4()} className=' items-center font-light text-sm mr-4'>
-                    <Link key={uuidv4()} href={`${linkFor}`}>🔗 {paid_resource}</Link>
-                  </p>
+                  
+                    <a key={uuidv4()} className=" items-center font-light text-sm mr-4" target="_blank" href={`${linkFor}`}>🔗 {paid_resource}</a>
+                  
                 ))}
                  </div>
                 
@@ -63,9 +64,7 @@ const ResponseList = ({careerList,careers}: Props) => {
                   <p className="text-md font-light space-x-2 my-4">Here are some free resources prepared for you :</p>
                   <div className="flex flex-wrap my-4 gap-3 ">
                   {career.free_resources.map(({free_resource,linkFor}) => (
-                  <p key={uuidv4()} className=' items-center font-light text-sm mr-4'>
-                    <Link key={uuidv4()}  href={`${linkFor}`}>🔗 {free_resource}</Link>
-                  </p>
+                  <a key={uuidv4()} className=" items-center font-light text-sm mr-4" target="_blank" href={`${linkFor}`}>🔗 {free_resource}</a>
                 ))}
                  </div>
                 
@@ -77,7 +76,8 @@ const ResponseList = ({careerList,careers}: Props) => {
             )) : console.log('oops something went wrong')}
             </>
         </div>
-      </div> : (
+      </div> 
+      ) : (
         <div className=""></div>
       )}
       </>

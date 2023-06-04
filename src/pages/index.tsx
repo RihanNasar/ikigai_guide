@@ -32,7 +32,7 @@ export default function Home() {
   const [money,setMoney] = useState<string>('')
   const [careerList,setCareerList] = useState<CareerData[]>()
   const [careers,setCareers] = useState<string[]>([])
-  const [err,setErr] = useState(false)
+  const [exist,setExist] = useState<boolean>(false)
 
   const onSubmitForm = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -56,9 +56,10 @@ export default function Home() {
       setCareerList(result.data)
       setCareers(result.careers)
       setLoading(false)
+      setExist(true)
       console.log(result.data[0])
     }else {
-      setErr(true)
+      console.log('something went wrong')
     }
     
     
@@ -92,7 +93,7 @@ export default function Home() {
         <label  className="block mb-2 text-xs md:text-sm font-light text-gray-900 self-start">What are the things that you are good at?</label>
         <textarea required onChange={(e:ChangeEvent<HTMLTextAreaElement>) => setInput(e.target.value)} value={input}className="block p-4 md:p-2.5 w-full text-xs md:text-sm text-gray-900 bg-transparent rounded-lg border-gray-400 border focus:ring-blue-500 outline-1 outline-indigo-300  transition-all ease-linear duration-25 focus:border-blue-500 " placeholder="Eg: coding,marketing,football,cooking etc...."></textarea>
        </div>
-       <button type="submit" className='bg-indigo-600 text-white p-2 rounded-lg w-1/2 m-auto self-center transition-all ease-in-out duration-75 hover:bg-indigo-400 hover:font-bold hover:text-indigo-950'>Submit</button>
+       <button type="submit" className='bg-gradient-to-br from-purple-600 to-blue-500 text-white p-2 rounded-lg w-1/2 m-auto self-center transition-all ease-in-out duration-75 hover:bg-indigo-200 hover:font-bold hover:text-indigo-950'>Submit</button>
        
        
 
@@ -105,7 +106,7 @@ export default function Home() {
             </p>
           </>
         
-        ): <ResponseList careers={careers} careerList={careerList} /> }
+        ): <ResponseList careers={careers} careerList={careerList} exist={exist} /> }
     </div>
     </>
   )
